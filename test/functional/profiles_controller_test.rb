@@ -18,4 +18,12 @@ end
 	assert_not_empty assigns(:statuses)
 end
 
+ test "only shows correct statuses" do 
+	get :show, id: users(:jason).profile_name
+	assert assigns(:user)
+	assigns(:statuses).each do |status|
+		assert_equal users(:jason), status.user
+	end
+end
+
 end
